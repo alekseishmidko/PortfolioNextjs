@@ -49,7 +49,11 @@ const Hero = () => {
     <>
       <section
         className={styles.hero}
-        style={{ backgroundImage: `url("/img/hero-bg.png")` }}
+        style={{
+          backgroundImage: isMobile485
+            ? ``
+            : `url("/img/hero-bg${isMobile ? "" : "-mobile"}.png")`,
+        }}
       >
         <div className="sub-container">
           <div>
@@ -89,7 +93,6 @@ const Hero = () => {
                 duration={500}
               >
                 {" "}
-                Связать с разработчиком
               </Link>
             )}
           </div>

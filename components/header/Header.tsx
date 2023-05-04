@@ -29,81 +29,87 @@ const Header = () => {
   };
   return (
     <header className={styles.header}>
-      <div className={styles.header__container}></div>
-      <Logo />
-      {isMobile && (
-        <button
-          className={`${styles.burger_menu}${menuOpen ? styles.open : ""}`}
-          onClick={handleToggleMenu}
-        >
-          <span />
-          <span />
-          <span />
-        </button>
-      )}
-
-      <nav
-        className={`${isMobile ? stylesMenu.menu : styles.header__nav}${
-          menuOpen ? stylesMenu.open : ""
-        }`}
-      >
-        <ul
-          className={`${
-            isMobile ? styles.list_reset : styles.header__nav__list
+      <div className={`container ${styles.header__container}`}>
+        <Logo />
+        {isMobile && (
+          <button
+            onClick={handleToggleMenu}
+            className={`${styles.burger_menu} ${menuOpen ? styles.open : ""}`}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+        )}
+        <nav
+          className={`${isMobile ? stylesMenu.menu : styles.header__nav} ${
+            menuOpen ? stylesMenu.open : ""
           }`}
         >
-          <li className={currentMenuItemClass}>
-            <Link
-              className={styles.header__nav__list__item__link}
-              href="/"
-              to="about"
-              spy={spy}
-              smooth={smooth}
-              offset={offset}
-              duration={duration}
-            >
-              {" "}
-              Обо мне
-            </Link>
-            <Link
-              className={styles.header__nav__list__item__link}
-              href="/"
-              to="scills"
-              spy={spy}
-              smooth={smooth}
-              offset={offset}
-              duration={duration}
-            >
-              {" "}
-              Навыки
-            </Link>
-            <Link
-              className={styles.header__nav__list__item__link}
-              href="/"
-              to="portfolio"
-              spy={spy}
-              smooth={smooth}
-              offset={offset}
-              duration={duration}
-            >
-              {" "}
-              Портфолио
-            </Link>
-            <Link
-              className={styles.header__nav__list__item__link}
-              href="/"
-              to="back "
-              spy={spy}
-              smooth={smooth}
-              offset={offset}
-              duration={duration}
-            >
-              {" "}
-              Обратная связь
-            </Link>
-          </li>
-        </ul>
-      </nav>
+          <ul
+            className={`${
+              isMobile ? styles.list_reset : styles.header__nav__list
+            }`}
+          >
+            <li className={currentMenuItemClass}>
+              <Link
+                href="/"
+                to="about"
+                spy={spy}
+                smooth={smooth}
+                offset={offset}
+                duration={duration}
+                className={styles.header__nav__list__item__link}
+                onClick={closeMenu}
+              >
+                Обо мне
+              </Link>
+            </li>
+            <li className={currentMenuItemClass}>
+              <Link
+                href="/"
+                to="skills"
+                spy={spy}
+                smooth={smooth}
+                offset={offset}
+                duration={duration}
+                className={styles.header__nav__list__item__link}
+                onClick={closeMenu}
+              >
+                Навыки
+              </Link>
+            </li>
+            <li className={currentMenuItemClass}>
+              <Link
+                href="/"
+                to="portfolio"
+                spy={spy}
+                smooth={smooth}
+                offset={offset}
+                duration={duration}
+                className={styles.header__nav__list__item__link}
+                onClick={closeMenu}
+              >
+                Портфолио
+              </Link>
+            </li>
+            <li className={currentMenuItemClass}>
+              <Link
+                href="/"
+                to="contact"
+                spy={spy}
+                smooth={smooth}
+                offset={offset}
+                duration={duration}
+                className={styles.header__nav__list__item__link}
+                onClick={closeMenu}
+              >
+                Обратная связь
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
   );
 };
