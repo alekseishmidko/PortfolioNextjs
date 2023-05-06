@@ -11,8 +11,11 @@ import {
   portfolioItems4,
 } from "./PortfolioTabContents";
 import { AnimatePresence } from "framer-motion";
+import { useMediaQuery } from "../../hooks";
+import PortfolioSlider from "./PortfolioSlider";
 // import portfolioItems1 from "./PortfolioTabContents";
 const Portfolio = () => {
+  const isMobile1080 = useMediaQuery(1080);
   const [portfolioTab1, setPortfolioTab1] = React.useState(true);
   const [portfolioTab2, setPortfolioTab2] = React.useState(false);
   const [portfolioTab3, setPortfolioTab3] = React.useState(false);
@@ -74,7 +77,7 @@ const Portfolio = () => {
     },
   ];
   return (
-    <section id="portfolio" className={styles.portfolio}>
+    <section className={styles.portfolio} id="portfolio">
       <div className="container">
         <MainTitle text="портфолио" />
       </div>
@@ -84,34 +87,58 @@ const Portfolio = () => {
             {portfolioTabControls.map((item) => (
               <PortfolioTabControl
                 key={item.id}
-                isActive={item.isActive}
                 title={item.title}
+                isActive={item.isActive}
                 handleShowTab={item.handler}
               />
             ))}
           </ul>
         </div>
-        <ul className={styles.portfolio__list}>
-          {portfolioTab1 && <PortfolioTabContent TabItems={portfolioItems1} />}
-          {portfolioTab2 && <PortfolioTabContent TabItems={portfolioItems2} />}
-          {portfolioTab3 && <PortfolioTabContent TabItems={portfolioItems3} />}
-          {portfolioTab4 && <PortfolioTabContent TabItems={portfolioItems4} />}
-          <AnimatePresence>
-            {hiddenPortfolioItems && (
-              <PortfolioTabContent TabItems={hiddenPortfolioItemsArray} />
+        {!isMobile1080 && (
+          <ul className={styles.portfolio__list}>
+            {portfolioTab1 && (
+              <PortfolioTabContent TabItems={portfolioItems1} />
             )}
-          </AnimatePresence>
-        </ul>
-        <button
-          className={styles.portfolio__more}
-          onClick={toggleHiddenPortfolioItems}
-        >
-          <span className={styles.portfolio__more__text}>
-            {hiddenPortfolioItems ? "Свернуть" : "Показать еще проекты"}
-          </span>
-          <span className={styles.portfolio__more__border}></span>
-        </button>
+            {portfolioTab2 && (
+              <PortfolioTabContent TabItems={portfolioItems2} />
+            )}
+            {portfolioTab3 && (
+              <PortfolioTabContent TabItems={portfolioItems3} />
+            )}
+            {portfolioTab4 && (
+              <PortfolioTabContent TabItems={portfolioItems4} />
+            )}
+            <AnimatePresence>
+              {hiddenPortfolioItems && (
+                <PortfolioTabContent TabItems={hiddenPortfolioItemsArray} />
+              )}
+            </AnimatePresence>
+          </ul>
+        )}
+        {!isMobile1080 && (
+          <div className={styles.portfolio__wrapper}>
+            <button
+              className={styles.portfolio__more}
+              onClick={toggleHiddenPortfolioItems}
+            >
+              <span className={styles.portfolio__more__text}>
+                {hiddenPortfolioItems ? "Свернуть" : "Показать еще проекты"}
+              </span>
+              <span className={styles.portfolio__more__border} />
+            </button>
+          </div>
+        )}
       </div>
+      {isMobile1080 && (
+        <div className={styles.portfolio__list__mobile}>
+          <div className={styles.portfolio__list__mobile__container}>
+            {portfolioTab1 && <PortfolioSlider TabItems={portfolioItems1} />}
+            {portfolioTab2 && <PortfolioSlider TabItems={portfolioItems2} />}
+            {portfolioTab3 && <PortfolioSlider TabItems={portfolioItems3} />}
+            {portfolioTab4 && <PortfolioSlider TabItems={portfolioItems4} />}
+          </div>
+        </div>
+      )}
     </section>
   );
 };

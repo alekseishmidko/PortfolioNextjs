@@ -19,10 +19,14 @@
     "framer-motion": "^10.12.7",
     "gsap": "^3.11.5",
     "next": "13.3.4",
+    "nextjs-progressbar": "^0.0.16",
+    "progress-bar": "^0.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-responsive-carousel": "^3.2.23",
     "react-scroll": "^1.8.9",
     "react-spinners": "^0.13.8",
+    "react-toastify": "^9.1.2",
     "sass": "^1.62.1",
     "typescript": "5.0.4"
   }
